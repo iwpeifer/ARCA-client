@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { AuthAdapter, UsersAdapter } from './adapters'
 
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Grid } from 'semantic-ui-react'
 
 import LoginForm from './components/LoginForm'
 import Room from './components/Room'
@@ -17,10 +17,10 @@ class App extends Component {
         user: {}
       },
       allUsers: [],
-      searchTerm: ""
+      SelectedUser: {}
     }
     this.logIn = this.logIn.bind(this)
-    this.updateSearchTerm = this.updateSearchTerm.bind(this)
+    this.selectUser = this.selectUser.bind(this)
   }
 
   logIn(loginParams) {
@@ -54,9 +54,9 @@ class App extends Component {
     }
   }
 
-  updateSearchTerm(input) {
+  selectUser(user) {
     this.setState({
-      searchTerm: input
+      selectedStudent: user
     })
   }
 
@@ -69,7 +69,6 @@ class App extends Component {
     if (this.state.auth.user.id) {
       user_id = this.state.auth.user.id
     }
-    console.log(user_id)
     return (
       <div>
           <Switch>
@@ -78,15 +77,13 @@ class App extends Component {
                 const id = routerProps.match.params.id
                 return (
                   <Grid>
-                <Row>
-                  <Col m={6}>
-                    <SearchBar updateSearchTerm={this.updateSearchTerm} searchTerm={this.state.searchTerm}/>
-                  </Col>
-                  <Col m={6}>
-                    <Room roomId={id}/>
-                  </Col>
-                </Row>
-              </Grid>
+                    <Grid.Column computer={4}>
+                      <SearchBar selectUser={this.selectUser} searchTerm={this.state.searchTerm} users={this.state.allUsers}/>
+                    </Grid.Column>
+                    <Grid.Column computer ={8}>
+                      <Room roomId={id}/>
+                    </Grid.Column>
+                  </Grid>
                 )
               }} />
           </Switch>

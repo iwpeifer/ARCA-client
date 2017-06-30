@@ -1,5 +1,22 @@
 const baseUrl = 'http://localhost:3000/api/v1'
 
+export class AuthAdapter {
+
+  static login(loginParams){
+    return fetch(`${baseUrl}/auth`, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify(loginParams)
+    }).then(response => response.json() )
+  }
+
+  static currentUser(){
+    return fetch(`${baseUrl}/current_user`, {
+      headers: headers()
+    }).then(response => response.json() )
+  }
+}
+
 export class ItemsAdapter {
 
   static all(roomId) {
@@ -22,6 +39,7 @@ export class ItemsAdapter {
   function headers() {
     return {
       'content-type': 'application/json',
-      'accept': 'application/json'
+      'accept': 'application/json',
+      'Authorization': localStorage.getItem('user_id')
     }
   }

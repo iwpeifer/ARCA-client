@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { ItemsAdapter} from '../adapters'
 import ItemProto from './ItemProto'
 
-export default class Room extends Component {
+class Room extends Component {
   constructor(props) {
     super(props)
 
@@ -16,6 +17,9 @@ export default class Room extends Component {
   }
 
   componentDidMount() {
+    if (!localStorage.getItem('user_id')) {
+      this.props.history.push('/login')
+    }
     ItemsAdapter.all(this.props.roomId)
     .then(data => this.setState({
       letters: data.letters
@@ -51,3 +55,5 @@ export default class Room extends Component {
   }
 
 }
+
+export default withRouter(Room)

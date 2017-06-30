@@ -9,6 +9,7 @@ body {
   width: 600px;
   border: solid 2px black;
   position: relative;
+  border-radius: 2%;
 }
 
 .test {

@@ -17,6 +17,15 @@ export class AuthAdapter {
   }
 }
 
+export class UsersAdapter {
+
+  static all() {
+    return fetch(`${baseUrl}/users`)
+    .then(response => response.json())
+  }
+
+}
+
 export class ItemsAdapter {
 
   static all(roomId) {

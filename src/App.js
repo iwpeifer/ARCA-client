@@ -39,6 +39,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    UsersAdapter.all()
+    .then(users => this.setState({
+      allUsers: users
+    }))
     if (localStorage.getItem('user_id')) {
       AuthAdapter.currentUser()
       .then(user => this.setState({
@@ -46,10 +50,6 @@ class App extends Component {
           isLoggedIn: true,
           user: user
         }
-      }))
-      UsersAdapter.all()
-      .then(users => this.setState({
-        allUsers: users
       }))
     } else {
       this.props.history.push('/login')
@@ -87,7 +87,13 @@ class App extends Component {
                 return (
                   <Grid>
                     <Grid.Column computer={4}>
-                      <SearchBar toggleFilter={this.toggleFilter} selectUser={this.selectUser} searchFilter={this.state.searchFilter} users={this.state.allUsers} currentUser={this.state.auth.user}/>
+                      <SearchBar
+                        toggleFilter={this.toggleFilter}
+                        selectUser  ={this.selectUser}
+                        searchFilter={this.state.searchFilter}
+                        users       ={this.state.allUsers}
+                        currentUser ={this.state.auth.user}
+                      />
                     </Grid.Column>
                     <Grid.Column computer ={8}>
                       <Room roomId={id}/>

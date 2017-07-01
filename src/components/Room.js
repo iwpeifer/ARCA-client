@@ -17,9 +17,6 @@ class Room extends Component {
   }
 
   componentDidMount() {
-    if (!localStorage.getItem('user_id')) {
-      this.props.history.push('/login')
-    }
     ItemsAdapter.all(this.props.roomId)
     .then(data => this.setState({
       letters: data.letters

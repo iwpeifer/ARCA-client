@@ -17,10 +17,12 @@ class App extends Component {
         user: {}
       },
       allUsers: [],
-      SelectedUser: {}
+      SelectedUser: {},
+      searchFilter: "all"
     }
     this.logIn = this.logIn.bind(this)
     this.selectUser = this.selectUser.bind(this)
+    this.toggleFilter = this.toggleFilter.bind(this)
   }
 
   logIn(loginParams) {
@@ -60,6 +62,13 @@ class App extends Component {
     })
   }
 
+  toggleFilter(event){
+    console.log(event.target.name)
+    this.setState({
+      searchFilter: event.target.name
+    })
+  }
+
   render() {
     let title
     let user_id
@@ -78,7 +87,7 @@ class App extends Component {
                 return (
                   <Grid>
                     <Grid.Column computer={4}>
-                      <SearchBar selectUser={this.selectUser} searchTerm={this.state.searchTerm} users={this.state.allUsers}/>
+                      <SearchBar toggleFilter={this.toggleFilter} selectUser={this.selectUser} searchFilter={this.state.searchFilter} users={this.state.allUsers} currentUser={this.state.auth.user}/>
                     </Grid.Column>
                     <Grid.Column computer ={8}>
                       <Room roomId={id}/>

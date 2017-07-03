@@ -17,7 +17,7 @@ class App extends Component {
         user: {}
       },
       allUsers: [],
-      SelectedUser: {},
+      selectedUser: {},
       searchFilter: "all"
     }
     this.logIn = this.logIn.bind(this)
@@ -58,8 +58,9 @@ class App extends Component {
 
   selectUser(user) {
     this.setState({
-      selectedStudent: user
+      selectedUser: user
     })
+    this.props.history.push(`${user.id}`)
   }
 
   toggleFilter(event){
@@ -70,14 +71,14 @@ class App extends Component {
   }
 
   render() {
-    let title
-    let user_id
-    if (this.state.auth.isLoggedIn) {
-      title = this.state.auth.user.username
-    }
-    if (this.state.auth.user.id) {
-      user_id = this.state.auth.user.id
-    }
+    // let title
+    // let user_id
+    // if (this.state.auth.isLoggedIn) {
+    //   title = this.state.auth.user.username
+    // }
+    // if (this.state.auth.user.id) {
+    //   user_id = this.state.auth.user.id
+    // }
     return (
       <div>
           <Switch>
@@ -96,13 +97,13 @@ class App extends Component {
                       />
                     </Grid.Column>
                     <Grid.Column computer ={8}>
-                      <Room roomId={id}/>
+                      <Room roomId={id} selectedUser={this.state.selectedUser}/>
                     </Grid.Column>
                   </Grid>
                 )
               }} />
           </Switch>
-      </div>
+        </div>
     );
   }
 }

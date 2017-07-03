@@ -11,7 +11,6 @@ export default class SearchBar extends Component {
   }
 
   handleChange(event, data){
-    console.log(data.value)
     this.props.selectUser(data.value)
   }
 

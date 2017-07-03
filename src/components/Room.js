@@ -17,11 +17,38 @@ class Room extends Component {
   }
 
   componentDidMount() {
+    console.log("Erique")
     ItemsAdapter.all(this.props.roomId)
     .then(data => this.setState({
       letters: data.letters
     }))
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextProps.roomId !== this.props.roomId){
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // }
+  //
+  // componentDidUpdate() {
+  //   console.log("ERIC")
+  //   ItemsAdapter.all(this.props.roomId)
+  //   .then(data => this.setState({
+  //     letters: data.letters
+  //   }))
+  // }
+
+  // componentWillReceiveProps(newProps) {
+  //   if (newProps.roomId){
+  //     console.log("ERIC")
+  //        ItemsAdapter.all(this.props.roomId)
+  //        .then(data => this.setState({
+  //          letters: data.letters
+  //        }))
+  //      }
+  //    }
 
   setCurrentItem(item){
     this.setState({

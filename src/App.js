@@ -85,6 +85,7 @@ class App extends Component {
             <Route exact path='/login' render={() => <LoginForm onSubmit={this.logIn}/>} />
             <Route exact path='/:id' render={(routerProps) => {
                 const id = routerProps.match.params.id
+                console.log(id)
                 return (
                   <Grid>
                     <Grid.Column computer={4}>

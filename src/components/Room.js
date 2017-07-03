@@ -8,6 +8,7 @@ class Room extends Component {
     super(props)
 
     this.state = {
+      roomId: this.props.roomId,
       letters: [],
       currentItem: {},
       currentItemCoords: { x:0, y:0 }
@@ -17,38 +18,22 @@ class Room extends Component {
   }
 
   componentDidMount() {
-    console.log("Erique")
-    ItemsAdapter.all(this.props.roomId)
+    this.updateRoom(this.props.roomId)
+  }
+
+  updateRoom(roomId) {
+    ItemsAdapter.all(roomId)
     .then(data => this.setState({
       letters: data.letters
     }))
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextProps.roomId !== this.props.roomId){
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
-  //
-  // componentDidUpdate() {
-  //   console.log("ERIC")
-  //   ItemsAdapter.all(this.props.roomId)
-  //   .then(data => this.setState({
-  //     letters: data.letters
-  //   }))
-  // }
-
-  // componentWillReceiveProps(newProps) {
-  //   if (newProps.roomId){
-  //     console.log("ERIC")
-  //        ItemsAdapter.all(this.props.roomId)
-  //        .then(data => this.setState({
-  //          letters: data.letters
-  //        }))
-  //      }
-  //    }
+  componentWillReceiveProps(newProps) {
+    if (newProps.roomId !== this.props.roomId){
+      console.log(`roomId is about to be: ${newProps.roomId}; it used to be: ${this.props.roomId}`)
+      this.updateRoom(newProps.roomId)
+    }
+  }
 
   setCurrentItem(item){
     this.setState({

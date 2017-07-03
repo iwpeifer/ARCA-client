@@ -29,6 +29,7 @@ export class UsersAdapter {
 export class ItemsAdapter {
 
   static all(roomId) {
+    console.log(`Fetching item data for room with roomId of ${roomId}`)
     return fetch(`${baseUrl}/rooms/${roomId}`)
     .then(response => response.json())
     }

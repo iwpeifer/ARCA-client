@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
-import { AuthAdapter, UsersAdapter } from './adapters'
+import { AuthAdapter, UsersAdapter, NotificationsAdapter } from './adapters'
 
 import { Grid } from 'semantic-ui-react'
 
 import LoginForm from './components/LoginForm'
 import Room from './components/Room'
 import SearchBar from './components/SearchBar'
+import Feed from './components/Feed'
+import UserOptions from './components/UserOptions'
 
 class App extends Component {
   constructor() {
@@ -18,11 +20,13 @@ class App extends Component {
       },
       allUsers: [],
       selectedUser: {},
-      searchFilter: "all"
+      searchFilter: "all",
+      notifications: []
     }
     this.logIn = this.logIn.bind(this)
     this.selectUser = this.selectUser.bind(this)
     this.toggleFilter = this.toggleFilter.bind(this)
+    this.updateNotifications = this.updateNotifications.bind(this)
   }
 
   logIn(loginParams) {
@@ -56,6 +60,14 @@ class App extends Component {
     }
   }
 
+  updateNotifications(userId) {
+    NotificationsAdapter.getUserNotifications(userId)
+    .then(console.log)
+    // .then(notifications => this.setState({
+    //   notifications: notifications
+    // }))
+  }
+
   selectUser(user) {
     this.setState({
       selectedUser: user
@@ -64,31 +76,28 @@ class App extends Component {
   }
 
   toggleFilter(event){
-    console.log(event.target.name)
     this.setState({
       searchFilter: event.target.name
     })
   }
 
+  sendFriendRequest(){
+
+  }
+
   render() {
-    // let title
-    // let user_id
-    // if (this.state.auth.isLoggedIn) {
-    //   title = this.state.auth.user.username
-    // }
-    // if (this.state.auth.user.id) {
-    //   user_id = this.state.auth.user.id
-    // }
     return (
       <div>
           <Switch>
             <Route exact path='/login' render={() => <LoginForm onSubmit={this.logIn}/>} />
             <Route exact path='/:id' render={(routerProps) => {
                 const id = routerProps.match.params.id
-                console.log(id)
                 return (
                   <Grid>
-                    <Grid.Column computer={4}>
+                    <Grid.Column computer={7}>
+                      <Room roomId={id} selectedUser={this.state.selectedUser} updateNotifications={this.updateNotifications}/>
+                    </Grid.Column>
+                    <Grid.Column computer={6}>
                       <SearchBar
                         toggleFilter={this.toggleFilter}
                         selectUser  ={this.selectUser}
@@ -96,9 +105,8 @@ class App extends Component {
                         users       ={this.state.allUsers}
                         currentUser ={this.state.auth.user}
                       />
-                    </Grid.Column>
-                    <Grid.Column computer ={8}>
-                      <Room roomId={id} selectedUser={this.state.selectedUser}/>
+                      <Feed />
+                      <UserOptions/>
                     </Grid.Column>
                   </Grid>
                 )

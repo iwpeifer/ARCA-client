@@ -36,6 +36,7 @@ export default class SearchBar extends Component {
     return (
     <div>
       <Button.Group>
+        <Button name={'my room'} color={'green'} onClick={() => this.props.selectUser(this.props.currentUser)}>My Room</Button>
         <Button name={'friends'} color={'olive'} onClick={this.props.toggleFilter}>My Friends</Button>
         <Button name={'all'} color={'olive'} onClick={this.props.toggleFilter}>All Users</Button>
       </Button.Group>

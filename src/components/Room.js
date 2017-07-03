@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { ItemsAdapter} from '../adapters'
+import { ItemsAdapter } from '../adapters'
 import ItemProto from './ItemProto'
 
 class Room extends Component {
@@ -19,6 +19,7 @@ class Room extends Component {
 
   componentDidMount() {
     this.updateRoom(this.props.roomId)
+    this.props.updateNotifications(this.props.roomId)
   }
 
   updateRoom(roomId) {
@@ -32,6 +33,7 @@ class Room extends Component {
     if (newProps.roomId !== this.props.roomId){
       console.log(`roomId is about to be: ${newProps.roomId}; it used to be: ${this.props.roomId}`)
       this.updateRoom(newProps.roomId)
+      this.props.updateNotifications(newProps.roomId)
     }
   }
 
@@ -57,7 +59,7 @@ class Room extends Component {
     return (
       <div className="room">
         {this.state.letters.map(letter => <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={() => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
-          <div className="test">{letter.content}</div>
+          <div className="letter">{letter.content}</div>
         </ItemProto>)}
       </div>
     )

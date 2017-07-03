@@ -7,16 +7,23 @@ body {
 .room {
   height: 600px;
   width: 600px;
-  border: solid 2px black;
+  border: dashed 2px gray;
   position: relative;
   border-radius: 2%;
 }
 
-.test {
+.feed {
+  width: 600px;
+  height: 200px;
+  border: dashed 1px gray;
+  background-color: white;
+  overflow: scroll;
+}
+
+.letter {
   height: 100px;
   width: 100px;
-  background-color: green;
+  background-color: rgb(33,186,69);
   color: white;
-  font-size: 80%;
   border-radius: 10%;
 }

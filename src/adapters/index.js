@@ -29,7 +29,6 @@ export class UsersAdapter {
 export class ItemsAdapter {
 
   static all(roomId) {
-    console.log(`Fetching item data for room with roomId of ${roomId}`)
     return fetch(`${baseUrl}/rooms/${roomId}`)
     .then(response => response.json())
     }
@@ -43,6 +42,19 @@ export class ItemsAdapter {
       })
     })
   }
+
+  }
+
+  export class NotificationsAdapter {
+
+    static getUserNotifications(userId){
+      return fetch(`${baseUrl}/users/${userId}/notifications`)
+      .then(response => response.json())
+    }
+
+    static sendFriendRequest(userId){
+      return fetch(`{baseUrl}/notifications/${userId}`)
+    }
 
   }
 

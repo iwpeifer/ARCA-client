@@ -31,7 +31,6 @@ class Room extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.roomId !== this.props.roomId){
-      console.log(`roomId is about to be: ${newProps.roomId}; it used to be: ${this.props.roomId}`)
       this.updateRoom(newProps.roomId)
       this.props.updateNotifications(newProps.roomId)
     }

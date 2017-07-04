@@ -23,9 +23,9 @@ class App extends Component {
       searchFilter: "all",
       notifications: []
     }
-    this.logIn = this.logIn.bind(this)
-    this.selectUser = this.selectUser.bind(this)
-    this.toggleFilter = this.toggleFilter.bind(this)
+    this.logIn               = this.logIn.bind(this)
+    this.selectUser          = this.selectUser.bind(this)
+    this.toggleFilter        = this.toggleFilter.bind(this)
     this.updateNotifications = this.updateNotifications.bind(this)
   }
 
@@ -37,9 +37,17 @@ class App extends Component {
           auth: { isLoggedIn: true, user: user }
         })
         localStorage.setItem('user_id', user.id)
-        this.props.history.push(`/${user.id}`)
+        this.selectUser(user)
       }
     })
+  }
+
+  initSelectUser(){
+    let pathname = this.props.location.pathname.split('/')[1]
+    UsersAdapter.initSelectUser(pathname)
+    .then( user => this.setState({
+      selectedUser: user
+    }))
   }
 
   componentDidMount() {
@@ -47,6 +55,7 @@ class App extends Component {
     .then(users => this.setState({
       allUsers: users
     }))
+    this.initSelectUser()
     if (localStorage.getItem('user_id')) {
       AuthAdapter.currentUser()
       .then(user => this.setState({
@@ -62,10 +71,9 @@ class App extends Component {
 
   updateNotifications(userId) {
     NotificationsAdapter.getUserNotifications(userId)
-    .then(console.log)
-    // .then(notifications => this.setState({
-    //   notifications: notifications
-    // }))
+    .then(notifications => this.setState({
+      notifications: notifications
+    }))
   }
 
   selectUser(user) {
@@ -95,7 +103,10 @@ class App extends Component {
                 return (
                   <Grid>
                     <Grid.Column computer={7}>
-                      <Room roomId={id} selectedUser={this.state.selectedUser} updateNotifications={this.updateNotifications}/>
+                      <Room roomId         ={id}
+                        selectedUser       ={this.state.selectedUser}
+                        updateNotifications={this.updateNotifications}
+                      />
                     </Grid.Column>
                     <Grid.Column computer={6}>
                       <SearchBar
@@ -106,7 +117,9 @@ class App extends Component {
                         currentUser ={this.state.auth.user}
                       />
                       <Feed />
-                      <UserOptions/>
+                      <UserOptions
+                        currentUser ={this.state.auth.user}
+                        selectedUser={this.state.selectedUser} />
                     </Grid.Column>
                   </Grid>
                 )

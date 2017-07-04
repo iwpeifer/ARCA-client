@@ -24,6 +24,11 @@ export class UsersAdapter {
     .then(response => response.json())
   }
 
+  static initSelectUser(userId) {
+    return fetch(`${baseUrl}/users/${userId}`)
+    .then(response => response.json())
+  }
+
 }
 
 export class ItemsAdapter {

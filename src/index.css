@@ -25,5 +25,8 @@ body {
   width: 100px;
   background-color: rgb(33,186,69);
   color: white;
-  border-radius: 10%;
+  border-radius: 10%;]
+  -ms-transform: rotate(7deg); /* IE 9 */
+    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+    transform: rotate(7deg);
 }

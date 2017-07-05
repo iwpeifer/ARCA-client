@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { AuthAdapter, UsersAdapter, NotificationsAdapter, ItemsAdapter } from './adapters'
+import Draggable from 'react-draggable'
 
 import { Grid } from 'semantic-ui-react'
 
@@ -130,7 +131,7 @@ class App extends Component {
                         selectedUser     ={this.state.selectedUser}
                         sendFriendRequest={this.sendFriendRequest}
                       />
-                    <NewMagnetForm roomId={id} createMagnet={this.createMagnet}/>
+                      <NewMagnetForm roomId={id} createMagnet={this.createMagnet}/>
                     </Grid.Column>
                   </Grid>
                 )

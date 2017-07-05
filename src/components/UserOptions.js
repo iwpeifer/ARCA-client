@@ -16,7 +16,6 @@ export default class UserOptions extends Component {
   }
 
   checkIfFriend(userId){
-    console.log(this.props.currentUser)
     this.props.currentUser.friends.forEach(friend => {
       if (friend.id == userId) {
         return this.setState({
@@ -41,7 +40,7 @@ export default class UserOptions extends Component {
   render() {
     return (
       <div>
-        { this.state.isFriend || this.isUsersRoom() ? null : <Button color='pink'>Send Friend Request</Button> }
+        { this.state.isFriend || this.isUsersRoom() ? null : <Button color='pink' onClick={this.props.sendFriendRequest}>Send Friend Request</Button> }
       </div>
     )
   }

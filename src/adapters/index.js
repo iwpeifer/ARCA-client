@@ -43,7 +43,10 @@ export class ItemsAdapter {
       method: 'PATCH',
       headers: headers(),
       body: JSON.stringify({
-        letter: {x: newCoords.x, y: newCoords.y}
+        letter: {
+          x: newCoords.x,
+          y: newCoords.y
+        }
       })
     })
   }
@@ -57,8 +60,18 @@ export class ItemsAdapter {
       .then(response => response.json())
     }
 
-    static sendFriendRequest(userId){
-      return fetch(`{baseUrl}/notifications/${userId}`)
+    static sendFriendRequest(userId, friendId){
+      return fetch(`${baseUrl}/users/${friendId}/notifications`, {
+        method: 'POST',
+        headers: headers(),
+        body: JSON.stringify({
+          notification: {
+            sender_id: userId,
+            recipient_id: friendId,
+            'is_friend_request': true
+          }
+        })
+      })
     }
 
   }

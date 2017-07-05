@@ -27,6 +27,7 @@ class App extends Component {
     this.selectUser          = this.selectUser.bind(this)
     this.toggleFilter        = this.toggleFilter.bind(this)
     this.updateNotifications = this.updateNotifications.bind(this)
+    this.sendFriendRequest   = this.sendFriendRequest.bind(this)
   }
 
   logIn(loginParams) {
@@ -90,7 +91,9 @@ class App extends Component {
   }
 
   sendFriendRequest(){
-
+    let user_id = this.state.auth.user.id
+    let friend_id = this.state.selectedUser.id
+    NotificationsAdapter.sendFriendRequest(user_id, friend_id)
   }
 
   render() {
@@ -116,10 +119,11 @@ class App extends Component {
                         users       ={this.state.allUsers}
                         currentUser ={this.state.auth.user}
                       />
-                      <Feed />
                       <UserOptions
-                        currentUser ={this.state.auth.user}
-                        selectedUser={this.state.selectedUser} />
+                        currentUser      ={this.state.auth.user}
+                        selectedUser     ={this.state.selectedUser}
+                        sendFriendRequest={this.sendFriendRequest}
+                      />
                     </Grid.Column>
                   </Grid>
                 )

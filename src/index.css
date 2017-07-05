@@ -10,6 +10,7 @@ body {
   border: dashed 2px gray;
   position: relative;
   border-radius: 2%;
+  background-color: lightgray;
 }
 
 .feed {
@@ -18,6 +19,7 @@ body {
   border: dashed 1px gray;
   background-color: white;
   overflow: scroll;
+  padding: 2em;
 }
 
 .letter {

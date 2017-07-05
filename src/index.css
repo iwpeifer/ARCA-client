@@ -7,10 +7,12 @@ body {
 .room {
   height: 600px;
   width: 600px;
-  border: dashed 2px gray;
+  /*border: dashed 2px gray;*/
   position: relative;
   border-radius: 2%;
-  background-color: lightgray;
+  background-image: url('./images/fridge.png');
+  background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .feed {
@@ -26,9 +28,15 @@ body {
   height: 100px;
   width: 100px;
   background-color: rgb(33,186,69);
+  border: solid 1px gray;
   color: white;
   border-radius: 10%;]
   -ms-transform: rotate(7deg); /* IE 9 */
     -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
     transform: rotate(7deg);
+}
+
+#selected {
+  box-shadow: 0 0 10px blue;
+  background-color: 50%;
 }

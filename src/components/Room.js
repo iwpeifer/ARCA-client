@@ -15,6 +15,7 @@ class Room extends Component {
     }
     this.setCurrentItemCoords = this.setCurrentItemCoords.bind(this)
     this.saveItemCoords = this.saveItemCoords.bind(this)
+    this.clickHandler = this.clickHandler.bind(this)
   }
 
   componentDidMount() {
@@ -40,6 +41,7 @@ class Room extends Component {
     this.setState({
       currentItem: item
     })
+    document.getElementById(item.id)
   }
 
   setCurrentItemCoords(coords) {
@@ -54,11 +56,18 @@ class Room extends Component {
     ItemsAdapter.update(item, newCoords)
   }
 
+  clickHandler(event){
+    if (document.getElementById('selected')){
+      document.getElementById('selected').removeAttribute('id')
+    }
+    event.target.id = "selected"
+  }
+
   render() {
     return (
       <div className="room">
-        {this.state.letters.map(letter => <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={() => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
-          <div className="letter">{letter.content}</div>
+        {this.state.letters.map(letter => <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={(event) => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
+          <div className="letter" onClick={this.clickHandler}>{letter.content}</div>
         </ItemProto>)}
       </div>
     )

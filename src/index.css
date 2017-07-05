@@ -7,10 +7,10 @@ body {
 .room {
   height: 600px;
   width: 600px;
-  /*border: dashed 2px gray;*/
+  border: dashed 2px gray;
   position: relative;
   border-radius: 2%;
-  background-image: url('./images/fridge.png');
+  /*background-image: url('./images/fridge.png');*/
   background-size: contain;
     background-repeat: no-repeat;
 }
@@ -24,16 +24,86 @@ body {
   padding: 2em;
 }
 
+#newMagnetForm {
+  margin: 10px;
+  border: dashed 2px gray;
+  padding: 15px;
+  border-radius: 2%;
+}
+
+#magnet-options {
+  margin: 10px;
+}
+
+#magnet-preview-container {
+  margin: 10px;
+}
+
 .letter {
+  position: fixed;
+  padding: 5px;
   height: 100px;
   width: 100px;
-  background-color: rgb(33,186,69);
   border: solid 1px gray;
   color: white;
-  border-radius: 10%;]
-  -ms-transform: rotate(7deg); /* IE 9 */
-    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
-    transform: rotate(7deg);
+  border-radius: 10%;
+  box-shadow: 1px 1px gray;
+  overflow: scroll;
+  font-size: 12px;
+}
+
+.preview{
+  position: relative;
+}
+
+.circle {
+  border-radius: 110%;
+  height: 110px;
+  width: 110px;
+  padding: 10px;
+  text-align: center;
+}
+
+.rectangle {
+  width: 150px;
+}
+
+.red {
+  background-color: rgb(219,40,40);
+}
+
+.orange {
+  background-color: rgb(242,113,20);
+}
+
+.yellow {
+  background-color: rgb(251,190,8);
+  color: black;
+}
+
+.green {
+  background-color: rgb(33,186,69);
+}
+
+.blue {
+  background-color: rgb(33,133,208);
+}
+
+.pink {
+  background-color: rgb(224,57,151);
+}
+
+.purple {
+  background-color: rgb(163,51,200);
+}
+
+.black {
+  background-color: rgb(37,38,39);
+}
+
+.white {
+  background-color: rgb(255,255,250);
+  color: black;
 }
 
 #selected {

@@ -67,7 +67,7 @@ class Room extends Component {
     return (
       <div className="room">
         {this.state.letters.map(letter => <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={(event) => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
-          <div className="letter" onClick={this.clickHandler}>{letter.content}</div>
+          <div className={`letter ${letter.shape} ${letter.color}`} onClick={this.clickHandler}>{letter.content}</div>
         </ItemProto>)}
       </div>
     )

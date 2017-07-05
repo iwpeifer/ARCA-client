@@ -51,6 +51,24 @@ export class ItemsAdapter {
     })
   }
 
+  static createMagnet(item, roomId) {
+    return fetch(`${baseUrl}/letters`, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({
+        letter: {
+          room_id: roomId,
+          color: item.color,
+          shape: item.shape,
+          image_url: item.image_url,
+          content: item.content,
+          x: 250,
+          y: 250
+        }
+      })
+    })
+  }
+
   }
 
   export class NotificationsAdapter {

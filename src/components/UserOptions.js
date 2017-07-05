@@ -16,17 +16,19 @@ export default class UserOptions extends Component {
   }
 
   checkIfFriend(userId){
-    this.props.currentUser.friends.forEach(friend => {
-      if (friend.id == userId) {
-        return this.setState({
-          isFriend: true
-        })
-      } else {
-        return this.setState({
-          isFriend: false
-        })
-      }
-    })
+    if (this.props.currentUser.friends){
+      this.props.currentUser.friends.forEach(friend => {
+        if (friend.id == userId) {
+          return this.setState({
+            isFriend: true
+          })
+        } else {
+          return this.setState({
+            isFriend: false
+          })
+        }
+      })
+    }
   }
 
   isUsersRoom(){

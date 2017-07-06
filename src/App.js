@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { AuthAdapter, UsersAdapter, NotificationsAdapter, ItemsAdapter } from './adapters'
-import Draggable from 'react-draggable'
 
 import { Grid } from 'semantic-ui-react'
 
 import LoginForm from './components/LoginForm'
 import Room from './components/Room'
 import SearchBar from './components/SearchBar'
-import Feed from './components/Feed'
 import UserOptions from './components/UserOptions'
 import NewMagnetForm from './components/NewMagnetForm'
 

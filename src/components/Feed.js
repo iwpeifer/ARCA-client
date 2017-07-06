@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message, Button } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react'
 
 export default (props) => {
   function renderFriendRequest(notification){

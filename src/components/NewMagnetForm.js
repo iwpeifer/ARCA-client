@@ -8,8 +8,8 @@ export default class NewMagnetForm extends Component {
       shape: 'square',
       color: 'white',
       content: '',
-      imageUrl: null,
-      linkUrl: null,
+      imageUrl: "",
+      linkUrl: "",
       fontSize: 12,
       fontFamily: 'sans-serif'
     }
@@ -109,13 +109,13 @@ export default class NewMagnetForm extends Component {
                 </Dropdown.Menu>
               </Dropdown>
             </Menu>
-            <Input name='content' value={this.state.content} onChange={this.changeHandler} placeholder='Write Here!'/>
-            <Input name='linkUrl' value={this.state.linkUrl} onChange={this.changeHandler} placeholder='Link URL'/>
-            <Input name='imageUrl' value={this.state.image_url} onChange={this.changeHandler} placeholder='Image URL'/>
+            Content:<Input name='content' value={this.state.content} onChange={this.changeHandler} placeholder='Write Here!'/>
+            Link:<Input name='linkUrl' value={this.state.linkUrl} onChange={this.changeHandler} placeholder='Link URL'/>
+            Image:<Input name='imageUrl' value={this.state.image_url} onChange={this.changeHandler} placeholder='Image URL'/>
           </Grid.Column>
           <Grid.Column computer={6}>
             <div id={'magnet-preview-container'}>
-              <div className={'letter preview' + ' ' + this.state.shape + ' ' + this.state.color} style={style}>{this.state.content}</div>
+              <div className={`letter preview ${this.state.shape} ${this.state.color}`} style={style}>{this.state.content}</div>
             </div>
             <div id={'magnet-options'}>
               <Button color='green' onClick={this.handleCreate}>Create Magnet</Button>

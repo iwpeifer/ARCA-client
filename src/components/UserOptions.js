@@ -18,7 +18,7 @@ export default class UserOptions extends Component {
   checkIfFriend(userId){
     if (this.props.currentUser.friends){
       this.props.currentUser.friends.forEach(friend => {
-        if (friend.id == userId) {
+        if (friend.id === userId) {
           return this.setState({
             isFriend: true
           })

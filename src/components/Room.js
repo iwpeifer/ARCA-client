@@ -24,7 +24,6 @@ class Room extends Component {
   }
 
   updateRoom(roomId) {
-    console.log("THIS SHOULD BE WORKING")
     ItemsAdapter.all(roomId)
     .then(data => this.setState({
       letters: data.letters

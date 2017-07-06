@@ -96,14 +96,14 @@ export default class NewMagnetForm extends Component {
               </Dropdown>
               <Dropdown text='Font' pointing='left' className='link item'>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.selectFont}>Helvetica</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectFont}>Times New Roman</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectFont}>Cursive</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectFont}>Impact</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectFont}>Arial Black</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectFont}>Courier</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectFont}>Palatino</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectFont}>Andale Mono</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'helvetica'}}>Helvetica</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'times new roman'}}>Times New Roman</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'cursive'}}>Cursive</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'Impact'}}>Impact</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'arial black'}}>Arial Black</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'courier'}}>Courier</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'palatino'}}>Palatino</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFont} style={{fontFamily: 'andale mono'}}>Andale Mono</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Dropdown text='Font Size' pointing='left' className='link item'>

@@ -62,14 +62,8 @@ class Room extends Component {
   clickHandler(event){
     if (document.getElementById('selected')) {
       document.getElementById('selected').removeAttribute('id')
-    } else if (document.getElementById('selected-with-link')) {
-      document.getElementById('selected-with-link').removeAttribute('id')
     }
-    if (this.state.currentItem.link_url){
-      event.target.id = "selected-with-link"
-    } else {
-      event.target.id = "selected"
-    }
+    event.target.id = "selected"
   }
 
   openLink(link){
@@ -81,9 +75,14 @@ class Room extends Component {
   render() {
     return (
       <div className="room">
-        {this.state.letters.map(letter => <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={(event) => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
-          <div className={`letter ${letter.shape} ${letter.color}`} style={{fontFamily: letter.font_family, fontSize: letter.font_size}} onClick={this.clickHandler} onDoubleClick={()=>this.openLink(letter.link_url)}>{letter.content}</div>
-        </ItemProto>)}
+        {this.state.letters.map(letter => {
+          return <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={(event) => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
+            {!letter.link_url ? (
+              <div className={`letter ${letter.shape} ${letter.color}`} style={{fontFamily: letter.font_family, fontSize: letter.font_size}} onClick={this.clickHandler} onDoubleClick={()=>this.openLink(letter.link_url)}>{letter.content}</div>
+              ) : (
+              <div className={`letter with-link ${letter.shape} ${letter.color}`} style={{fontFamily: letter.font_family, fontSize: letter.font_size}} onClick={this.clickHandler} onDoubleClick={()=>this.openLink(letter.link_url)}>{letter.content}</div>
+            )}
+        </ItemProto>})}
       </div>
     )
   }

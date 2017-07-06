@@ -28,6 +28,7 @@ class Room extends Component {
     .then(data => this.setState({
       letters: data.letters
     }))
+    .then(console.log("Room has been updated"))
   }
 
   componentWillReceiveProps(newProps) {
@@ -35,8 +36,9 @@ class Room extends Component {
       this.updateRoom(newProps.roomId)
       this.props.updateNotifications(newProps.roomId)
     }
-    if (newProps.newItem === true)
-    this.updateRoom(this.props.roomId)
+    if (newProps.newItem === true) {
+      this.updateRoom(this.props.roomId)
+    }
   }
 
   setCurrentItem(item){
@@ -74,14 +76,23 @@ class Room extends Component {
 
   renderMagnets(){
     return this.state.letters.map(letter => {
-      return <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={(event) => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
+      return (
+        <ItemProto
+          key={letter.id}
+          defaultPosition={{x: letter.x, y: letter.y}}
+          bounds='parent'
+          nodeParent={this}
+          setCurrentItemCoords={this.setCurrentItemCoords}
+          onStart={(event) => this.setCurrentItem(letter)}
+          onStop={this.saveItemCoords}>
         {
-          this.renderMagnet(letter)
+          this.renderIndividualMagnet(letter)
         }
-    </ItemProto>})
+      </ItemProto>)
+    })
   }
 
-  renderMagnet(letter){
+  renderIndividualMagnet(letter){
     let withLink
     letter.link_url ? withLink = 'with-link' : null
     let image = letter.img_url
@@ -90,18 +101,6 @@ class Room extends Component {
         style={{fontFamily: letter.font_family, fontSize: letter.font_size, backgroundImage: `url(${letter.image_url})` }}
         onClick={this.clickHandler}
           onDoubleClick={()=>this.openLink(letter.link_url)}>
-        {letter.content}
-      </div>
-    )
-  }
-
-  renderLinkedMagnet(letter){
-    return (
-      <div
-        className={`letter with-link ${letter.shape} ${letter.color}`}
-        style={{fontFamily: letter.font_family, fontSize: letter.font_size}}
-        onClick={this.clickHandler}
-        onDoubleClick={()=>this.openLink(letter.link_url)}>
         {letter.content}
       </div>
     )

@@ -117,8 +117,8 @@ export default class NewMagnetForm extends Component {
               </Dropdown>
             </Menu>
             Content:<Input name='content' value={this.state.content} onChange={this.changeHandler} placeholder='Write Here!'/>
-          Link:<Input name='linkUrl' value={this.state.linkUrl} onChange={this.changeHandler} placeholder='https://..'/>
-          Image:<Input name='imageUrl' value={this.state.image_url} onChange={this.changeHandler} placeholder='https://...'/>
+            Link:<Input name='linkUrl' value={this.state.linkUrl} onChange={this.changeHandler} placeholder='https://..'/>
+            Image:<Input name='imageUrl' value={this.state.image_url} onChange={this.changeHandler} placeholder='https://...'/>
           </Grid.Column>
           <Grid.Column computer={6}>
             <div id={'magnet-preview-container'}>

@@ -33,6 +33,7 @@ class App extends Component {
     this.sendFriendRequest   = this.sendFriendRequest.bind(this)
     this.createMagnet        = this.createMagnet.bind(this)
     this.deleteMagnet        = this.deleteMagnet.bind(this)
+    this.resetNewItem        = this.resetNewItem.bind(this)
   }
 
   logIn(loginParams) {
@@ -95,6 +96,12 @@ class App extends Component {
     })
   }
 
+  resetNewItem() {
+    this.setState({
+      newItem: false
+    })
+  }
+
   toggleFilter(event){
     this.setState({
       searchFilter: event.target.name
@@ -109,13 +116,15 @@ class App extends Component {
 
   createMagnet(item, roomId){
     ItemsAdapter.createMagnet(item, roomId)
-    .then(this.setState({
+    .then(console.log("Magnet has been created"))
+    this.setState({
       newItem: true
-    }))
+    })
   }
 
   deleteMagnet(item){
     ItemsAdapter.deleteMagnet(item)
+    .then(console.log("Magnet has been deleted"))
     this.setState({
       selectedItem: "",
       newItem: true
@@ -138,6 +147,7 @@ class App extends Component {
                         selectedUser       ={this.state.selectedUser}
                         updateNotifications={this.updateNotifications}
                         selectItem         ={this.selectItem}
+                        resetNewItem       ={this.resetNewItem}
                       />
                     </Grid.Column>
                     <Grid.Column computer={6}>

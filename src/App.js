@@ -117,9 +117,9 @@ class App extends Component {
   createMagnet(item, roomId){
     ItemsAdapter.createMagnet(item, roomId)
     .then(console.log("Magnet has been created"))
-    this.setState({
+    .then(this.setState({
       newItem: true
-    })
+    }))
   }
 
   deleteMagnet(item){

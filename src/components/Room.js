@@ -36,7 +36,7 @@ class Room extends Component {
       this.updateRoom(newProps.roomId)
       this.props.updateNotifications(newProps.roomId)
     }
-    if (newProps.newItem === true) {
+    if (newProps.newItem) {
       this.updateRoom(this.props.roomId)
     }
   }

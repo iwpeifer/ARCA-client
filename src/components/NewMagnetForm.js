@@ -68,7 +68,7 @@ export default class NewMagnetForm extends Component {
   }
 
   render() {
-    let style = {fontSize: this.state.fontSize, fontFamily: this.state.fontFamily}
+    let style = {fontSize: this.state.fontSize, fontFamily: this.state.fontFamily, backgroundImage: `url(${this.state.imageUrl})`}
     return (
       <div id='newMagnetForm'>
         <Grid>

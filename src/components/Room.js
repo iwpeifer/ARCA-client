@@ -72,17 +72,45 @@ class Room extends Component {
     }
   }
 
+  renderMagnets(){
+    return this.state.letters.map(letter => {
+      return <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={(event) => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
+        {
+          this.renderMagnet(letter)
+        }
+    </ItemProto>})
+  }
+
+  renderMagnet(letter){
+    let withLink
+    letter.link_url ? withLink = 'with-link' : null
+    let image = letter.img_url
+    return (
+      <div className={`letter ${withLink} ${letter.shape} ${letter.color}`}
+        style={{fontFamily: letter.font_family, fontSize: letter.font_size, backgroundImage: `url(${letter.image_url})` }}
+        onClick={this.clickHandler}
+          onDoubleClick={()=>this.openLink(letter.link_url)}>
+        {letter.content}
+      </div>
+    )
+  }
+
+  renderLinkedMagnet(letter){
+    return (
+      <div
+        className={`letter with-link ${letter.shape} ${letter.color}`}
+        style={{fontFamily: letter.font_family, fontSize: letter.font_size}}
+        onClick={this.clickHandler}
+        onDoubleClick={()=>this.openLink(letter.link_url)}>
+        {letter.content}
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="room">
-        {this.state.letters.map(letter => {
-          return <ItemProto key={letter.id} defaultPosition={{x: letter.x, y: letter.y}} bounds='parent' nodeParent={this} setCurrentItemCoords={this.setCurrentItemCoords} onStart={(event) => this.setCurrentItem(letter)} onStop={this.saveItemCoords}>
-            {!letter.link_url ? (
-              <div className={`letter ${letter.shape} ${letter.color}`} style={{fontFamily: letter.font_family, fontSize: letter.font_size}} onClick={this.clickHandler} onDoubleClick={()=>this.openLink(letter.link_url)}>{letter.content}</div>
-              ) : (
-              <div className={`letter with-link ${letter.shape} ${letter.color}`} style={{fontFamily: letter.font_family, fontSize: letter.font_size}} onClick={this.clickHandler} onDoubleClick={()=>this.openLink(letter.link_url)}>{letter.content}</div>
-            )}
-        </ItemProto>})}
+        {this.renderMagnets()}
       </div>
     )
   }

@@ -30,8 +30,9 @@ export default class NewMagnetForm extends Component {
     })
   }
 
-  selectColor(event){
-    let newColor = event.target.innerHTML.toLowerCase()
+  selectColor(color){
+    let newColor = color
+    // toLowerCase()
     this.setState({
       color: newColor
     })
@@ -83,15 +84,15 @@ export default class NewMagnetForm extends Component {
               </Dropdown>
               <Dropdown text='Color' pointing='left' className='link item'>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.selectColor}>White</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Red</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Orange</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Yellow</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Green</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Blue</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Purple</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Pink</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectColor}>Black</Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('white')}><div className='swatch white'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('red')}><div className='swatch red'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('orange')}><div className='swatch orange'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('yellow')}><div className='swatch yellow'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('green')}><div className='swatch green'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('blue')}><div className='swatch blue'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('purple')}><div className='swatch purple'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('pink')}><div className='swatch pink'></div></Dropdown.Item>
+                  <Dropdown.Item onClick={() => this.selectColor('black')}><div className='swatch black'></div></Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Dropdown text='Font' pointing='left' className='link item'>
@@ -116,8 +117,8 @@ export default class NewMagnetForm extends Component {
               </Dropdown>
             </Menu>
             Content:<Input name='content' value={this.state.content} onChange={this.changeHandler} placeholder='Write Here!'/>
-            Link:<Input name='linkUrl' value={this.state.linkUrl} onChange={this.changeHandler} placeholder='Link URL'/>
-            Image:<Input name='imageUrl' value={this.state.image_url} onChange={this.changeHandler} placeholder='Image URL'/>
+          Link:<Input name='linkUrl' value={this.state.linkUrl} onChange={this.changeHandler} placeholder='https://..'/>
+          Image:<Input name='imageUrl' value={this.state.image_url} onChange={this.changeHandler} placeholder='https://...'/>
           </Grid.Column>
           <Grid.Column computer={6}>
             <div id={'magnet-preview-container'}>

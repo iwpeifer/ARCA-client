@@ -13,12 +13,14 @@ export default class NewMagnetForm extends Component {
       fontSize: 12,
       fontFamily: 'sans-serif'
     }
+    this.changeHandler = this.changeHandler.bind(this)
     this.selectShape = this.selectShape.bind(this)
     this.selectColor = this.selectColor.bind(this)
-    this.changeHandler = this.changeHandler.bind(this)
-    this.handleCreate = this.handleCreate.bind(this)
     this.selectFont = this.selectFont.bind(this)
     this.selectFontSize = this.selectFontSize.bind(this)
+
+    this.handleCreate = this.handleCreate.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   selectShape(event){
@@ -59,6 +61,10 @@ export default class NewMagnetForm extends Component {
   handleCreate(){
     let item = this.state
     this.props.createMagnet(item, this.props.roomId)
+  }
+
+  handleDelete(){
+    this.props.deleteMagnet(this.props.selectedItem)
   }
 
   render() {
@@ -118,7 +124,12 @@ export default class NewMagnetForm extends Component {
               <div className={`letter preview ${this.state.shape} ${this.state.color}`} style={style}>{this.state.content}</div>
             </div>
             <div id={'magnet-options'}>
-              <Button color='green' onClick={this.handleCreate}>Create Magnet</Button>
+              <div className='options-button'>
+                <Button className='options-button' color='green' onClick={this.handleCreate}>Create Magnet</Button>
+              </div>
+              <div className='options-button'>
+                {this.props.selectedItem ? <Button className='options-button' color='red' onClick={this.handleDelete}>Delete Magnet</Button> : null }
+              </div>
             </div>
           </Grid.Column>
         </Grid>

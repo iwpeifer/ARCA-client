@@ -54,8 +54,12 @@ body {
   line-height: normal;
 }
 
-.preview{
+.preview {
   position: relative;
+}
+
+.options-button {
+  margin: 10px;
 }
 
 .circle {

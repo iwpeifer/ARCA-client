@@ -72,6 +72,13 @@ export class ItemsAdapter {
     })
   }
 
+  static deleteMagnet(item) {
+    return fetch(`${baseUrl}/letters/${item.id}`, {
+      method: 'DELETE',
+      headers: headers()
+    }).then(response => response.json())
+  }
+
   }
 
   export class NotificationsAdapter {

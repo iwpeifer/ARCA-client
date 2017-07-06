@@ -43,6 +43,7 @@ class Room extends Component {
     this.setState({
       currentItem: item
     })
+    this.props.selectItem(item)
     document.getElementById(item.id)
   }
 

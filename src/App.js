@@ -20,16 +20,19 @@ class App extends Component {
       },
       allUsers: [],
       selectedUser: {},
-      searchFilter: "all",
+      searchFilter: 'all',
       notifications: [],
-      newItem: false
+      newItem: false,
+      selectedItem: ''
     }
     this.logIn               = this.logIn.bind(this)
     this.selectUser          = this.selectUser.bind(this)
+    this.selectItem          = this.selectItem.bind(this)
     this.toggleFilter        = this.toggleFilter.bind(this)
     this.updateNotifications = this.updateNotifications.bind(this)
     this.sendFriendRequest   = this.sendFriendRequest.bind(this)
     this.createMagnet        = this.createMagnet.bind(this)
+    this.deleteMagnet        = this.deleteMagnet.bind(this)
   }
 
   logIn(loginParams) {
@@ -86,6 +89,12 @@ class App extends Component {
     this.props.history.push(`${user.id}`)
   }
 
+  selectItem(item) {
+    this.setState({
+      selectedItem: item
+    })
+  }
+
   toggleFilter(event){
     this.setState({
       searchFilter: event.target.name
@@ -99,10 +108,18 @@ class App extends Component {
   }
 
   createMagnet(item, roomId){
-    ItemsAdapter.createMagnet(item, roomId)
+    ItemsAdapter.createMagnet(item)
     .then(this.setState({
       newItem: true
     }))
+  }
+
+  deleteMagnet(item){
+    ItemsAdapter.deleteMagnet(item)
+    this.setState({
+      selectedItem: "",
+      newItem: true
+    })
   }
 
   render() {
@@ -120,6 +137,7 @@ class App extends Component {
                         newItem            ={this.state.newItem}
                         selectedUser       ={this.state.selectedUser}
                         updateNotifications={this.updateNotifications}
+                        selectItem         ={this.selectItem}
                       />
                     </Grid.Column>
                     <Grid.Column computer={6}>
@@ -135,7 +153,11 @@ class App extends Component {
                         selectedUser     ={this.state.selectedUser}
                         sendFriendRequest={this.sendFriendRequest}
                       />
-                      <NewMagnetForm roomId={id} createMagnet={this.createMagnet}/>
+                      <NewMagnetForm
+                        roomId      ={id}
+                        createMagnet={this.createMagnet}
+                        deleteMagnet={this.deleteMagnet}
+                        selectedItem={this.state.selectedItem} />
                     </Grid.Column>
                   </Grid>
                 )

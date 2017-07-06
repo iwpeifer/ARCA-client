@@ -108,7 +108,7 @@ class App extends Component {
   }
 
   createMagnet(item, roomId){
-    ItemsAdapter.createMagnet(item)
+    ItemsAdapter.createMagnet(item, roomId)
     .then(this.setState({
       newItem: true
     }))

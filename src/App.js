@@ -23,7 +23,8 @@ class App extends Component {
       allUsers: [],
       selectedUser: {},
       searchFilter: "all",
-      notifications: []
+      notifications: [],
+      newItem: false
     }
     this.logIn               = this.logIn.bind(this)
     this.selectUser          = this.selectUser.bind(this)
@@ -101,6 +102,9 @@ class App extends Component {
 
   createMagnet(item, roomId){
     ItemsAdapter.createMagnet(item, roomId)
+    .then(this.setState({
+      newItem: true
+    }))
   }
 
   render() {
@@ -113,7 +117,9 @@ class App extends Component {
                 return (
                   <Grid>
                     <Grid.Column computer={8}>
-                      <Room roomId         ={id}
+                      <Room
+                        roomId             ={id}
+                        newItem            ={this.state.newItem}
                         selectedUser       ={this.state.selectedUser}
                         updateNotifications={this.updateNotifications}
                       />

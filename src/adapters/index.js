@@ -60,8 +60,11 @@ export class ItemsAdapter {
           room_id: roomId,
           color: item.color,
           shape: item.shape,
-          image_url: item.image_url,
+          image_url: item.imageUrl,
+          link_url: item.linkUrl,
           content: item.content,
+          font_size: item.fontSize,
+          font_family: item.fontFamily,
           x: 250,
           y: 250
         }

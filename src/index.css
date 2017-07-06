@@ -29,6 +29,7 @@ body {
   border: dashed 2px gray;
   padding: 15px;
   border-radius: 2%;
+  background-color: white;
 }
 
 #magnet-options {
@@ -50,6 +51,7 @@ body {
   box-shadow: 1px 1px gray;
   overflow: scroll;
   font-size: 12px;
+  line-height: normal;
 }
 
 .preview{
@@ -107,6 +109,9 @@ body {
 }
 
 #selected {
-  box-shadow: 0 0 10px blue;
-  background-color: 50%;
+  box-shadow: 0 0 20px rgb(181,204,24);
+}
+
+#selected-with-link {
+  box-shadow: 0 0 20px blue;
 }

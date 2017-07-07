@@ -4,6 +4,7 @@ body {
   font-family: sans-serif;
   background-image: url('./images/kitchen.png');
   background-size: 100%;
+  height: 600px;
 }
 
 .room {
@@ -14,6 +15,7 @@ body {
   background-color: black;
   background-image: url('http://luckywabbit.com/fridgepoet/fridge.png');
   background-size: 100% 100%;
+  margin: 20px;
 }
 
 .feed {

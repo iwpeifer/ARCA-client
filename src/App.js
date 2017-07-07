@@ -40,7 +40,6 @@ class App extends Component {
     AuthAdapter.login(loginParams)
     .then( user => {
       if (!user.error) {
-        debugger
         this.setState({
           auth: { isLoggedIn: true, user: user }
         })
@@ -67,6 +66,7 @@ class App extends Component {
     if (localStorage.getItem('jwt')) {
       AuthAdapter.currentUser()
       .then(user => {
+        console.log(user)
         if (!user.error) {
           this.setState({
             auth: {
@@ -78,6 +78,8 @@ class App extends Component {
           this.props.history.push('/login')
         }
       })
+    } else {
+      this.props.history.push('/login')
     }
   }
 

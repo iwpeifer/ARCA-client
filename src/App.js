@@ -40,10 +40,11 @@ class App extends Component {
     AuthAdapter.login(loginParams)
     .then( user => {
       if (!user.error) {
+        debugger
         this.setState({
           auth: { isLoggedIn: true, user: user }
         })
-        localStorage.setItem('user_id', user.id)
+        localStorage.setItem('jwt', user.jwt)
         this.selectUser(user)
       }
     })
@@ -63,16 +64,20 @@ class App extends Component {
       allUsers: users
     }))
     this.initSelectUser()
-    if (localStorage.getItem('user_id')) {
+    if (localStorage.getItem('jwt')) {
       AuthAdapter.currentUser()
-      .then(user => this.setState({
-        auth: {
-          isLoggedIn: true,
-          user: user
+      .then(user => {
+        if (!user.error) {
+          this.setState({
+            auth: {
+              isLoggedIn: true,
+              user: user
+            }
+          })
+        } else {
+          this.props.history.push('/login')
         }
-      }))
-    } else {
-      this.props.history.push('/login')
+      })
     }
   }
 

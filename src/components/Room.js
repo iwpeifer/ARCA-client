@@ -41,6 +41,8 @@ class Room extends Component {
     }
   }
 
+  //ERIC RULES!
+
   setCurrentItem(item){
     this.setState({
       currentItem: item

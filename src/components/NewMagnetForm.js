@@ -75,13 +75,6 @@ export default class NewMagnetForm extends Component {
         <Grid>
           <Grid.Column computer={8}>
             <Menu vertical>
-              <Dropdown text='Shape' pointing='left' className='link item'>
-                <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.selectShape}>Square</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectShape}>Rectangle</Dropdown.Item>
-                  <Dropdown.Item onClick={this.selectShape}>Circle</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
               <Dropdown text='Color' pointing='left' className='link item'>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => this.selectColor('white')}><div className='swatch white'></div></Dropdown.Item>
@@ -93,6 +86,13 @@ export default class NewMagnetForm extends Component {
                   <Dropdown.Item onClick={() => this.selectColor('purple')}><div className='swatch purple'></div></Dropdown.Item>
                   <Dropdown.Item onClick={() => this.selectColor('pink')}><div className='swatch pink'></div></Dropdown.Item>
                   <Dropdown.Item onClick={() => this.selectColor('black')}><div className='swatch black'></div></Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown text='Shape' pointing='left' className='link item'>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={this.selectShape}>Square</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectShape}>Rectangle</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectShape}>Circle</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Dropdown text='Font' pointing='left' className='link item'>

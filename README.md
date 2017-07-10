@@ -4,4 +4,5 @@ Welcome to Frij, a fun and colorful bookmark manager! Decorate your Frij with cu
 
 # Site in Action
 
-![alt text](/Users/student/Desktop/ARCA/boxbox/src/images/screenshot.png)
+
+<img src='/Users/student/Desktop/ARCA/boxbox/src/images/screenshot.png'/>

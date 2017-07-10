@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom'
-import { AuthAdapter, UsersAdapter, NotificationsAdapter, ItemsAdapter } from './adapters'
+import { Switch, Route, withRouter, Link } from 'react-router-dom'
+import { AuthAdapter, UsersAdapter, ItemsAdapter } from './adapters'
 
 import { Grid } from 'semantic-ui-react'
 
@@ -21,7 +21,6 @@ class App extends Component {
       allUsers: [],
       selectedUser: {},
       searchFilter: 'all',
-      notifications: [],
       newItem: false,
       selectedItem: ''
     }
@@ -29,7 +28,6 @@ class App extends Component {
     this.selectUser          = this.selectUser.bind(this)
     this.selectItem          = this.selectItem.bind(this)
     this.toggleFilter        = this.toggleFilter.bind(this)
-    this.updateNotifications = this.updateNotifications.bind(this)
     this.sendFriendRequest   = this.sendFriendRequest.bind(this)
     this.createMagnet        = this.createMagnet.bind(this)
     this.deleteMagnet        = this.deleteMagnet.bind(this)
@@ -83,13 +81,6 @@ class App extends Component {
     }
   }
 
-  updateNotifications(userId) {
-    NotificationsAdapter.getUserNotifications(userId)
-    .then(notifications => this.setState({
-      notifications: notifications
-    }))
-  }
-
   selectUser(user) {
     this.setState({
       selectedUser: user
@@ -118,7 +109,6 @@ class App extends Component {
   sendFriendRequest(){
     let user_id = this.state.auth.user.id
     let friend_id = this.state.selectedUser.id
-    NotificationsAdapter.sendFriendRequest(user_id, friend_id)
   }
 
   createMagnet(item, roomId){
@@ -132,10 +122,14 @@ class App extends Component {
   deleteMagnet(item){
     ItemsAdapter.deleteMagnet(item)
     .then(console.log("Magnet has been deleted"))
-    this.setState({
+    .then(this.setState({
       selectedItem: "",
       newItem: true
-    })
+    }))
+  }
+
+  logout(){
+    localStorage.clear()
   }
 
   render() {
@@ -146,37 +140,44 @@ class App extends Component {
             <Route exact path='/:id' render={(routerProps) => {
                 const id = routerProps.match.params.id
                 return (
-                  <Grid>
-                    <Grid.Column computer={8}>
-                      <Room
-                        roomId             ={id}
-                        newItem            ={this.state.newItem}
-                        selectedUser       ={this.state.selectedUser}
-                        updateNotifications={this.updateNotifications}
-                        selectItem         ={this.selectItem}
-                        resetNewItem       ={this.resetNewItem}
-                      />
-                    </Grid.Column>
-                    <Grid.Column computer={6}>
-                      <SearchBar
-                        toggleFilter={this.toggleFilter}
-                        selectUser  ={this.selectUser}
-                        searchFilter={this.state.searchFilter}
-                        users       ={this.state.allUsers}
-                        currentUser ={this.state.auth.user}
-                      />
-                      <UserOptions
-                        currentUser      ={this.state.auth.user}
-                        selectedUser     ={this.state.selectedUser}
-                        sendFriendRequest={this.sendFriendRequest}
-                      />
-                      <NewMagnetForm
-                        roomId      ={id}
-                        createMagnet={this.createMagnet}
-                        deleteMagnet={this.deleteMagnet}
-                        selectedItem={this.state.selectedItem} />
-                    </Grid.Column>
-                  </Grid>
+                  <div className='app'>
+                    <div className='logo_small'>Frij</div>
+                    <Grid>
+                      <Grid.Column computer={8}>
+                        <Room
+                          roomId             ={id}
+                          newItem            ={this.state.newItem}
+                          selectedUser       ={this.state.selectedUser}
+                          selectItem         ={this.selectItem}
+                          resetNewItem       ={this.resetNewItem}
+                        />
+                      </Grid.Column>
+                      <Grid.Column computer={7}>
+                        <div className='create-form-container'>
+                          <SearchBar
+                            toggleFilter={this.toggleFilter}
+                            selectUser  ={this.selectUser}
+                            searchFilter={this.state.searchFilter}
+                            users       ={this.state.allUsers}
+                            currentUser ={this.state.auth.user}
+                          />
+                          <UserOptions
+                            currentUser      ={this.state.auth.user}
+                            selectedUser     ={this.state.selectedUser}
+                            sendFriendRequest={this.sendFriendRequest}
+                          />
+                          <NewMagnetForm
+                            roomId      ={id}
+                            createMagnet={this.createMagnet}
+                            deleteMagnet={this.deleteMagnet}
+                            selectedItem={this.state.selectedItem} />
+                        </div>
+                      </Grid.Column>
+                    </Grid>
+                    <div className='footer'>
+                      <Link to="/login" onClick={this.logout}>Log Out</Link>
+                    </div>
+                  </div>
                 )
               }} />
           </Switch>

@@ -20,7 +20,6 @@ class Room extends Component {
 
   componentDidMount() {
     this.updateRoom(this.props.roomId)
-    this.props.updateNotifications(this.props.roomId)
   }
 
   updateRoom(roomId) {
@@ -34,7 +33,6 @@ class Room extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps.roomId !== this.props.roomId){
       this.updateRoom(newProps.roomId)
-      this.props.updateNotifications(newProps.roomId)
     }
     if (newProps.newItem) {
       this.updateRoom(this.props.roomId)
@@ -95,7 +93,6 @@ class Room extends Component {
   renderIndividualMagnet(letter){
     let withLink
     letter.link_url ? withLink = 'with-link' : null
-    let image = letter.img_url
     return (
       <div className={`letter ${withLink} ${letter.shape} ${letter.color}`}
         style={{fontFamily: letter.font_family, fontSize: letter.font_size, backgroundImage: `url(${letter.image_url})` }}
@@ -108,8 +105,10 @@ class Room extends Component {
 
   render() {
     return (
-      <div className="room">
-        {this.renderMagnets()}
+      <div className='frij'>
+        <div className='room'>
+          {this.renderMagnets()}
+        </div>
       </div>
     )
   }

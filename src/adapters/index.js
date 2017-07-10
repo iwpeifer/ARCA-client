@@ -81,29 +81,6 @@ export class ItemsAdapter {
 
   }
 
-  export class NotificationsAdapter {
-
-    static getUserNotifications(userId){
-      return fetch(`${baseUrl}/users/${userId}/notifications`)
-      .then(response => response.json())
-    }
-
-    static sendFriendRequest(userId, friendId){
-      return fetch(`${baseUrl}/users/${friendId}/notifications`, {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({
-          notification: {
-            sender_id: userId,
-            recipient_id: friendId,
-            'is_friend_request': true
-          }
-        })
-      })
-    }
-
-  }
-
   function headers() {
     return {
       'content-type': 'application/json',

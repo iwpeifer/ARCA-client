@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ![alt text](./images/Screenshot.png)
 
@@ -6,3 +7,5 @@ Welcome to Frij, a fun and colorful bookmark manager! Decorate your Frij with cu
 
 # Site in Action
 ![alt text](./images/Screenshot.png)
+=======
+>>>>>>> add_friend

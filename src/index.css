@@ -1,21 +1,54 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-image: url('./images/kitchen.png');
-  background-size: 100%;
-  height: 600px;
+
+
+  background-image:    url('./images/kitchen.jpg');
+                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.logo {
+  font-family: 'Lobster', cursive;
+  font-size: 700px;
+  color: rgb(133,233,255);
+  opacity: 0.4;
+  text-align: center;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.logo_small {
+  font-family: 'Lobster', cursive;
+  font-size: 100px;
+  color: rgb(133,233,255);
+  opacity: 0.4;
+  right: 5%;
+  top: 10%;
+  position: absolute;
+  /*top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
 }
 
 .room {
   height: 600px;
-  width: 600px;
+  width: 800px;
+  padding: 10px;
+  border-bottom: solid 2px black;
+  box-shadow: -1px 2px 2px black;
+}
+
+.frij {
+  height: 1000px;
+  width: 800px;
   position: fixed;
-  border-radius: 2%;
-  background-color: black;
-  background-image: url('http://luckywabbit.com/fridgepoet/fridge.png');
+  background-image: url('./images/frij.png');
   background-size: 100% 100%;
-  margin: 20px;
 }
 
 .feed {
@@ -27,11 +60,32 @@ body {
   padding: 2em;
 }
 
+.create-form-container {
+  position: fixed;
+  top: 15%;
+  left: 60%;
+  max-width: 500px;
+  min-width: 312.5px;
+}
+
+.login-form-container {
+  color: white;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin: 10px;
+
+}
+
 #newMagnetForm {
   margin: 10px;
   padding: 20px;
   border-radius: 2%;
   font-weight: bold;
+  color: white;
 }
 
 #magnet-options {
@@ -97,7 +151,6 @@ body {
 .swatch {
   height: 20px;
   width: 40px;
-  margin: 2px;
   border-radius: 10%;
 }
 
@@ -177,4 +230,21 @@ body {
 
 #selected {
   box-shadow: 0 0 20px blue;
+}
+
+a {
+  color: navy;
+}
+
+.footer {
+  color: white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  background-color: rgb(133,233,255);
+  opacity: 0.4;
+  text-align: right;
+  z-index: -1;
 }

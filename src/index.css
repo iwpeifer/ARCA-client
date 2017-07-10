@@ -44,10 +44,12 @@ body {
 }
 
 .frij {
-  height: 1000px;
+  top: -10px;
+  left: 5px;
+  height: 1974px;
   width: 800px;
   position: fixed;
-  background-image: url('./images/frij.png');
+  background-image: url('./images/frij-sized.png');
   background-size: 100% 100%;
 }
 
@@ -237,7 +239,7 @@ a {
 }
 
 .footer {
-  color: white;
+  color: black;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -247,4 +249,13 @@ a {
   opacity: 0.4;
   text-align: right;
   z-index: -1;
+}
+
+#current-link {
+  position: absolute;
+  left: 70px;
+  bottom: 5px;
+  padding: 5px;
+  color: navy;
+  text-align: left;
 }

@@ -51,7 +51,7 @@ export class ItemsAdapter {
     })
   }
 
-  static createMagnet(item, roomId) {
+  static createMagnet(item, roomId, originator) {
     return fetch(`${baseUrl}/letters`, {
       method: 'POST',
       headers: headers(),
@@ -65,6 +65,7 @@ export class ItemsAdapter {
           content: item.content,
           font_size: item.fontSize,
           font_family: item.fontFamily,
+          originator: originator,
           x: 250,
           y: 250
         }
@@ -87,4 +88,23 @@ export class ItemsAdapter {
       'accept': 'application/json',
       'Authorization': localStorage.getItem('jwt')
     }
+  }
+
+  export class FriendshipsAdapter {
+
+    static request(userId, friendId) {
+      return fetch(`${baseUrl}/friendships`, {
+        method: 'POST',
+        headers: headers(),
+        body: JSON.stringify({
+          friendship: {
+            user_id: userId,
+            friend_id: friendId,
+            status: 'requested'
+          }
+        })
+      })
+    }
+
+
   }

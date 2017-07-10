@@ -69,6 +69,12 @@ export default class NewMagnetForm extends Component {
   }
 
   render() {
+    if (this.state.imageUrl === 'jonny'){
+      this.setState({
+        imageUrl: 'https://avatars2.githubusercontent.com/u/19194646?v=3&s=460',
+        content: "You're only supposed to blow the bloody doors in"
+      })
+    }
     let style = {fontSize: this.state.fontSize, fontFamily: this.state.fontFamily, backgroundImage: `url(${this.state.imageUrl})`}
     return (
       <div id='newMagnetForm'>

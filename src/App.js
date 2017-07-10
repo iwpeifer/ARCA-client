@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter, Link } from 'react-router-dom'
-import { AuthAdapter, UsersAdapter, ItemsAdapter } from './adapters'
+import { AuthAdapter, UsersAdapter, ItemsAdapter, FriendshipsAdapter } from './adapters'
 
 import { Grid } from 'semantic-ui-react'
 
@@ -106,13 +106,18 @@ class App extends Component {
     })
   }
 
-  sendFriendRequest(){
-    let user_id = this.state.auth.user.id
-    let friend_id = this.state.selectedUser.id
+  sendFriendRequest(user, friend){
+    let newAuth = this.state.auth
+    newAuth.user.friends.push(friend)
+    console.log(newAuth)
+    FriendshipsAdapter.request(user.id, friend.id)
+    this.setState({
+      auth: newAuth
+    })
   }
 
   createMagnet(item, roomId){
-    ItemsAdapter.createMagnet(item, roomId)
+    ItemsAdapter.createMagnet(item, roomId, this.state.auth.user.username)
     .then(console.log("Magnet has been created"))
     .then(this.setState({
       newItem: true
@@ -174,6 +179,9 @@ class App extends Component {
                         </div>
                       </Grid.Column>
                     </Grid>
+                    <div id='current-link'>
+                      {this.state.selectedItem.link_url}
+                    </div>
                     <div className='footer'>
                       <Link to="/login" onClick={this.logout}>Log Out</Link>
                     </div>

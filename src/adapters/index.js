@@ -66,8 +66,8 @@ export class ItemsAdapter {
           font_size: item.fontSize,
           font_family: item.fontFamily,
           originator: originator,
-          x: 250,
-          y: 250
+          x: 325,
+          y: 300
         }
       })
     })

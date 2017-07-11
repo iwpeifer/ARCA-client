@@ -64,7 +64,6 @@ class App extends Component {
     if (localStorage.getItem('jwt')) {
       AuthAdapter.currentUser()
       .then(user => {
-        console.log(user)
         if (!user.error) {
           this.setState({
             auth: {
@@ -109,28 +108,31 @@ class App extends Component {
   sendFriendRequest(user, friend){
     let newAuth = this.state.auth
     newAuth.user.friends.push(friend)
-    console.log(newAuth)
     FriendshipsAdapter.request(user.id, friend.id)
-    this.setState({
-      auth: newAuth
+    .then(response => {
+      this.setState({
+        auth: newAuth
+      })
     })
   }
 
   createMagnet(item, roomId){
     ItemsAdapter.createMagnet(item, roomId, this.state.auth.user.username)
-    .then(console.log("Magnet has been created"))
-    .then(this.setState({
+    .then( magnet => {
+      this.setState({
       newItem: true
-    }))
+    })
+  })
   }
 
   deleteMagnet(item){
     ItemsAdapter.deleteMagnet(item)
-    .then(console.log("Magnet has been deleted"))
-    .then(this.setState({
-      selectedItem: "",
-      newItem: true
-    }))
+    .then(response => {
+      this.setState({
+        selectedItem: "",
+        newItem: true
+      })
+    })
   }
 
   logout(){

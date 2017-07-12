@@ -68,14 +68,6 @@ export default class NewMagnetForm extends Component {
     this.props.deleteMagnet(this.props.selectedItem)
   }
 
-  renderDeleteButton(){
-    if (this.props.roomId === this.props.currentUserId && this.props.selectedItem) {
-      return (
-        <Button className='options-button' color='red' onClick={this.handleDelete}>Delete Magnet</Button>
-      )
-    }
-  }
-
   render() {
     if (this.state.imageUrl === 'jonny'){
       this.setState({
@@ -148,7 +140,7 @@ export default class NewMagnetForm extends Component {
                   <div className='too-many-magnets'>You have too many magnets!</div> }
               </div>
               <div className='options-button'>
-                {this.renderDeleteButton()}
+                {this.props.selectedItem && this.props.currentUserId == this.props.roomId ? <Button className='options-button' color='red' onClick={this.handleDelete}>Delete Magnet</Button> : null }
               </div>
             </div>
           </Grid.Column>

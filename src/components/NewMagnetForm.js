@@ -148,7 +148,7 @@ export default class NewMagnetForm extends Component {
                   <div className='too-many-magnets'>You have too many magnets!</div> }
               </div>
               <div className='options-button'>
-                {this.renderDeleteButton}
+                {this.renderDeleteButton()}
               </div>
             </div>
           </Grid.Column>

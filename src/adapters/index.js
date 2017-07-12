@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000/api/v1'
+const baseUrl = 'https://frij-backend.herokuapp.com/api/v1/'
 
 export class AuthAdapter {
 

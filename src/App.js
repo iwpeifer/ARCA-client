@@ -168,6 +168,7 @@ class App extends Component {
                             deleteMagnet={this.deleteMagnet}
                             selectedItem={this.state.selectedItem}
                             magnetCount ={this.state.appLetterCount}
+                            currentUserId ={this.state.auth.user.id}
                           />
                         </div>
                       </Grid.Column>

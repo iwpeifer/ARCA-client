@@ -134,7 +134,10 @@ export default class NewMagnetForm extends Component {
             </div>
             <div id={'magnet-options'}>
               <div className='options-button'>
-                <Button className='options-button' color='green' onClick={this.handleCreate}>Create Magnet</Button>
+                {this.props.magnetCount <= 20 ?
+                  <Button className='options-button' color='green' onClick={this.handleCreate}>Create Magnet</Button>
+                    :
+                  <div className='too-many-magnets'>You have too many magnets!</div> }
               </div>
               <div className='options-button'>
                 {this.props.selectedItem ? <Button className='options-button' color='red' onClick={this.handleDelete}>Delete Magnet</Button> : null }

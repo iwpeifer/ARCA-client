@@ -22,7 +22,8 @@ class App extends Component {
       selectedUser: {},
       searchFilter: 'all',
       newItem: false,
-      selectedItem: ''
+      selectedItem: '',
+      appLetterCount: 0
     }
     this.logIn               = this.logIn.bind(this)
     this.selectUser          = this.selectUser.bind(this)
@@ -30,6 +31,7 @@ class App extends Component {
     this.createMagnet        = this.createMagnet.bind(this)
     this.deleteMagnet        = this.deleteMagnet.bind(this)
     this.resetNewItem        = this.resetNewItem.bind(this)
+    this.appLetterCount      = this.appLetterCount.bind(this)
   }
 
   logIn(loginParams) {
@@ -97,6 +99,13 @@ class App extends Component {
     })
   }
 
+  appLetterCount(items) {
+    console.log(items)
+    this.setState({
+      appLetterCount: items.letters.length
+    })
+  }
+
 
   createMagnet(item, roomId){
     ItemsAdapter.createMagnet(item, roomId, this.state.auth.user.username)
@@ -136,11 +145,12 @@ class App extends Component {
                     <Grid>
                       <Grid.Column computer={8}>
                         <Room
-                          roomId      ={id}
-                          newItem     ={this.state.newItem}
-                          selectedUser={this.state.selectedUser}
-                          selectItem  ={this.selectItem}
-                          resetNewItem={this.resetNewItem}
+                          roomId        ={id}
+                          newItem       ={this.state.newItem}
+                          selectedUser  ={this.state.selectedUser}
+                          selectItem    ={this.selectItem}
+                          resetNewItem  ={this.resetNewItem}
+                          appLetterCount={this.appLetterCount}
                         />
                       </Grid.Column>
                       <Grid.Column computer={7}>
@@ -156,7 +166,9 @@ class App extends Component {
                             roomId      ={id}
                             createMagnet={this.createMagnet}
                             deleteMagnet={this.deleteMagnet}
-                            selectedItem={this.state.selectedItem} />
+                            selectedItem={this.state.selectedItem}
+                            magnetCount ={this.state.appLetterCount}
+                          />
                         </div>
                       </Grid.Column>
                     </Grid>

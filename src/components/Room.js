@@ -23,9 +23,12 @@ class Room extends Component {
 
   updateRoom(roomId) {
     ItemsAdapter.all(roomId)
-    .then(data => this.setState({
-      letters: data.letters
-    }))
+    .then(data => {
+      this.props.appLetterCount(data)
+      this.setState({
+        letters: data.letters
+      })
+    })
   }
 
   componentWillReceiveProps(newProps) {
@@ -36,7 +39,7 @@ class Room extends Component {
       this.props.resetNewItem()
     }
   }
-  
+
 
   setCurrentItem(item){
     this.setState({

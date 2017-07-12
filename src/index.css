@@ -163,6 +163,14 @@ body {
   margin-bottom: 10px;
 }
 
+.too-many-magnets {
+  color: red;
+  position: relative;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 #my-room-button {
   position: relative;
   bottom: 10px;

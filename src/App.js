@@ -7,7 +7,7 @@ import { Grid } from 'semantic-ui-react'
 import LoginForm from './components/LoginForm'
 import Room from './components/Room'
 import SearchBar from './components/SearchBar'
-import UserOptions from './components/UserOptions'
+// import UserOptions from './components/UserOptions'
 import NewMagnetForm from './components/NewMagnetForm'
 
 class App extends Component {
@@ -27,8 +27,6 @@ class App extends Component {
     this.logIn               = this.logIn.bind(this)
     this.selectUser          = this.selectUser.bind(this)
     this.selectItem          = this.selectItem.bind(this)
-    this.toggleFilter        = this.toggleFilter.bind(this)
-    this.sendFriendRequest   = this.sendFriendRequest.bind(this)
     this.createMagnet        = this.createMagnet.bind(this)
     this.deleteMagnet        = this.deleteMagnet.bind(this)
     this.resetNewItem        = this.resetNewItem.bind(this)
@@ -99,26 +97,11 @@ class App extends Component {
     })
   }
 
-  toggleFilter(event){
-    this.setState({
-      searchFilter: event.target.name
-    })
-  }
-
-  sendFriendRequest(user, friend){
-    let newAuth = this.state.auth
-    newAuth.user.friends.push(friend)
-    FriendshipsAdapter.request(user.id, friend.id)
-    .then(response => {
-      this.setState({
-        auth: newAuth
-      })
-    })
-  }
 
   createMagnet(item, roomId){
     ItemsAdapter.createMagnet(item, roomId, this.state.auth.user.username)
     .then( magnet => {
+      console.log(magnet)
       this.setState({
       newItem: true
     })
@@ -149,14 +132,15 @@ class App extends Component {
                 return (
                   <div className='app'>
                     <div className='logo_small'>Frij</div>
+                    <div id='title'>{this.state.selectedUser.username}’s Frij</div>
                     <Grid>
                       <Grid.Column computer={8}>
                         <Room
-                          roomId             ={id}
-                          newItem            ={this.state.newItem}
-                          selectedUser       ={this.state.selectedUser}
-                          selectItem         ={this.selectItem}
-                          resetNewItem       ={this.resetNewItem}
+                          roomId      ={id}
+                          newItem     ={this.state.newItem}
+                          selectedUser={this.state.selectedUser}
+                          selectItem  ={this.selectItem}
+                          resetNewItem={this.resetNewItem}
                         />
                       </Grid.Column>
                       <Grid.Column computer={7}>
@@ -167,11 +151,6 @@ class App extends Component {
                             searchFilter={this.state.searchFilter}
                             users       ={this.state.allUsers}
                             currentUser ={this.state.auth.user}
-                          />
-                          <UserOptions
-                            currentUser      ={this.state.auth.user}
-                            selectedUser     ={this.state.selectedUser}
-                            sendFriendRequest={this.sendFriendRequest}
                           />
                           <NewMagnetForm
                             roomId      ={id}
@@ -197,3 +176,29 @@ class App extends Component {
 }
 
 export default withRouter(App);
+
+  // this.toggleFilter        = this.toggleFilter.bind(this)
+// this.sendFriendRequest   = this.sendFriendRequest.bind(this)
+
+// sendFriendRequest(user, friend){
+//   let newAuth = this.state.auth
+//   newAuth.user.friends.push(friend)
+//   FriendshipsAdapter.request(user.id, friend.id)
+//   .then(response => {
+//     this.setState({
+//       auth: newAuth
+//     })
+//   })
+// }
+
+// <UserOptions
+//   currentUser      ={this.state.auth.user}
+//   selectedUser     ={this.state.selectedUser}
+//   sendFriendRequest={this.sendFriendRequest}
+//   />
+
+// toggleFilter(event){
+//   this.setState({
+//     searchFilter: event.target.name
+//   })
+// }

@@ -8,7 +8,6 @@ class Room extends Component {
     super(props)
 
     this.state = {
-      roomId: this.props.roomId,
       letters: [],
       currentItem: {},
       currentItemCoords: { x:0, y:0 }
@@ -27,17 +26,17 @@ class Room extends Component {
     .then(data => this.setState({
       letters: data.letters
     }))
-    .then(console.log("Room has been updated"))
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.roomId !== this.props.roomId){
       this.updateRoom(newProps.roomId)
-    }
-    if (newProps.newItem) {
+    } else if (newProps.newItem) {
       this.updateRoom(this.props.roomId)
+      this.props.resetNewItem()
     }
   }
+  
 
   setCurrentItem(item){
     this.setState({

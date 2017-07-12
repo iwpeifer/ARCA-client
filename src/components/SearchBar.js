@@ -6,7 +6,6 @@ export default class SearchBar extends Component {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
-    this.filteredUsers = this.filteredUsers.bind(this)
     this.usersOptions = this.usersOptions.bind(this)
   }
 
@@ -14,15 +13,6 @@ export default class SearchBar extends Component {
     this.props.selectUser(data.value)
   }
 
-  filteredUsers(){
-    let users
-    if (this.props.searchFilter === "friends"){
-      users = this.props.currentUser.friends
-    } else {
-      users = this.props.users
-    }
-    return users
-  }
 
   usersOptions(users){
     return users.map(user => {
@@ -30,18 +20,33 @@ export default class SearchBar extends Component {
     })
   }
 
-  render() {
-  let users = this.filteredUsers()
+  render(){
+  // let users = this.filteredUsers()
+  let users = this.props.users
   let options = this.usersOptions(users)
     return (
     <div>
       <Button.Group>
-        <Button name={'my room'} color={'green'} onClick={() => this.props.selectUser(this.props.currentUser)}>My Room</Button>
-        <Button name={'friends'} color={'olive'} onClick={this.props.toggleFilter}>My Friends</Button>
-        <Button name={'all'} color={'olive'} onClick={this.props.toggleFilter}>All Users</Button>
+        <Button id='my-room-button' name={'my room'} color={'green'} onClick={() => this.props.selectUser(this.props.currentUser)}>My Room</Button>
       </Button.Group>
       <Dropdown name='searchBar' placeholder='Search for Users' fluid search selection options={options} onChange={this.handleChange}/>
     </div>
     )
   }
 }
+
+
+// this.filteredUsers = this.filteredUsers.bind(this)
+
+// filteredUsers(){
+//   let users
+//   if (this.props.searchFilter === "friends"){
+//     users = this.props.currentUser.friends
+//   } else {
+//     users = this.props.users
+//   }
+//   return users
+// }
+
+// <Button name={'friends'} color={'olive'} onClick={this.props.toggleFilter}>My Friends</Button>
+// <Button name={'all'} color={'olive'} onClick={this.props.toggleFilter}>All Users</Button>

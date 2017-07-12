@@ -116,7 +116,9 @@ export default class NewMagnetForm extends Component {
               <Dropdown text='Font Size' pointing='left' className='link item'>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={this.selectFontSize}>12</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFontSize}>14</Dropdown.Item>
                   <Dropdown.Item onClick={this.selectFontSize}>16</Dropdown.Item>
+                  <Dropdown.Item onClick={this.selectFontSize}>20</Dropdown.Item>
                   <Dropdown.Item onClick={this.selectFontSize}>24</Dropdown.Item>
                   <Dropdown.Item onClick={this.selectFontSize}>36</Dropdown.Item>
                 </Dropdown.Menu>

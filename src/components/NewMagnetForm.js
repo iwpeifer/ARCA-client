@@ -140,7 +140,7 @@ export default class NewMagnetForm extends Component {
                   <div className='too-many-magnets'>You have too many magnets!</div> }
               </div>
               <div className='options-button'>
-                {this.props.selectedItem && this.props.currentUserId == this.props.roomId ? <Button className='options-button' color='red' onClick={this.handleDelete}>Delete Magnet</Button> : null }
+                {this.props.selectedItem && (this.props.currentUser.id == this.props.roomId || this.props.currentUser.username == this.props.selectedItem.originator) ? <Button className='options-button' color='red' onClick={this.handleDelete}>Delete Magnet</Button> : null }
               </div>
             </div>
           </Grid.Column>
